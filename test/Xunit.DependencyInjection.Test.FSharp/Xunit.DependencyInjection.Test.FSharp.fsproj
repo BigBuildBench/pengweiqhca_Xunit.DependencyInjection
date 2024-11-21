@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <ParallelizationMode>Enhance</ParallelizationMode>
+    <GenerateProgramFile>false</GenerateProgramFile>
+    <LangVersion>8.0</LangVersion>
+    <DisableImplicitSystemValueTupleReference>true</DisableImplicitSystemValueTupleReference>
+
+    <TargetFrameworks Condition="'$(OS)' == 'Windows_NT'">net472;$(TargetFrameworks)</TargetFrameworks>
+  </PropertyGroup>
+
+  <Import Project="..\..\src\Xunit.DependencyInjection\Xunit.DependencyInjection.targets" />
+  <Import Project="..\TestPackages.targets" />
+
+  <ItemGroup>
+    <Compile Include="AssemblyNamespaceTest.fs" />
+    <Compile Include="ModuleTest.fs" />
+    <Compile Include="ModuleTest2.fs" />
+    <Compile Include="ModuleTest3.fs" />
+    <Compile Include="ScopedTest.fs" />
+    <Compile Include="Program.fs" />
+
+    <PackageReference Include="System.Threading.Tasks.Extensions" Version="4.*" Condition="'$(TargetFrameworkIdentifier)' == '.NETFramework'" />
+    <PackageReference Include="System.ValueTuple" Version="4.*" Condition="'$(TargetFrameworkIdentifier)' == '.NETFramework'" />
+
+    <ProjectReference Include="..\..\src\Xunit.DependencyInjection\Xunit.DependencyInjection.csproj" />
+  </ItemGroup>
+
+</Project>
